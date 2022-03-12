@@ -28,11 +28,11 @@ TODO: Add diagrams showing [architecture](https://docs.microsoft.com/en-us/dotne
 
 ## Tech stack
 - Microservices written in C# 10 / .NET 6
-- [dapr](https://docs.dapr.io/concepts/overview/) as the distributed application runtime
+- [Dapr](https://docs.dapr.io/concepts/overview/) as the distributed application runtime
 - [Redis](https://docs.dapr.io/reference/components-reference/supported-state-stores/setup-redis/) as the state store for patient and lab data
 - [RabbitMQ](https://docs.dapr.io/reference/components-reference/supported-pubsub/setup-rabbitmq/) as the pub/sub broker for patient admissions and alerting
 - [Elastic](https://docs.dapr.io/operations/monitoring/logging/fluentd/) for searching all event logs generated in the system and collected by [fluentd](https://www.fluentd.org/)
-- [Docker](https://docs.dapr.io/operations/hosting/self-hosted/self-hosted-with-docker/) containers orchestrated by [Kubernetes](https://docs.dapr.io/operations/hosting/kubernetes/kubernetes-overview/) using Linux servers managed by [Rancher](https://rancher.com/why-rancher)
+- [Docker](https://docs.dapr.io/operations/hosting/self-hosted/self-hosted-with-docker/) containers running on Linux servers orchestrated by [Kubernetes](https://docs.dapr.io/operations/hosting/kubernetes/kubernetes-overview/) and managed via [Rancher](https://rancher.com/why-rancher)
 
 ## Building
 

@@ -1,0 +1,21 @@
+{
+  "folders": [
+    {
+      "path": ".."
+    }
+  ],
+  "settings": {
+    "cSpell.language": "en-GB",
+    "cSpell.enableFiletypes": [
+      "aspnetcorerazor",
+      "azure-pipelines",
+      "powershell"
+    ],
+    "cSpell.words": [
+      "dapr",
+      "fluentd",
+      "kubernetes",
+      "microservices"
+    ]
+  }
+}
