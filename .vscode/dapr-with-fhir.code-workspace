@@ -5,7 +5,7 @@
     }
   ],
   "settings": {
-    "cSpell.language": "en-GB",
+    "cSpell.language": "en-GB,en",
     "cSpell.enableFiletypes": [
       "aspnetcorerazor",
       "azure-pipelines",
@@ -14,6 +14,7 @@
     "cSpell.words": [
       "dapr",
       "fluentd",
+      "kubectl",
       "kubernetes",
       "microservices"
     ]
