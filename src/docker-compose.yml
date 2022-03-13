@@ -2,5 +2,8 @@ version: '3.4'
 
 services:
 
-  rabbitmq:
-    image: rabbitmq:3-management-alpine
+  adtservice.api:
+    image: ${DOCKER_REGISTRY-}adtserviceapi
+    build:
+      context: .
+      dockerfile: services/Adt/AdtService.Api/Dockerfile
