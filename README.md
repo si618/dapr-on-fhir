@@ -1,13 +1,13 @@
 # Dapr with FHIR 🔥
 
-An experiment in building cloud native microservices, using [Dapr](dapr.io) and the [FHIR](https://hl7.org/fhir/) data exchange standard in a containerized environment.
+An experiment in building microservices using [Dapr](dapr.io) and the [FHIR](https://hl7.org/fhir/) data exchange standard.
 
 ## Goals
 
 - Learn by experimenting with RabbitMQ, Redis, and Elastic for an upcoming job
-- Build a proof of concept system using a microservice architecture
+- Build a proof of concept system using a microservice architecture based on [domain driven design](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/ddd-oriented-microservice) and [command query responsibility segregation](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/apply-simplified-microservice-cqrs-ddd-patterns)
 - Learn and implement the [virtual actor pattern](https://docs.microsoft.com/en-us/dotnet/architecture/dapr-for-net-developers/actors) to see if it's a good fit for this experiment
-- Delve more deeply into Dapr, Docker, Kubernetes, and Rancher
+- Delve more deeply into Dapr, Docker, and Kubernetes
 
 ## Overview
 
@@ -33,13 +33,13 @@ TODO: Add diagrams showing [architecture](https://docs.microsoft.com/en-us/dotne
 - [Redis](https://docs.dapr.io/reference/components-reference/supported-state-stores/setup-redis/) as the state stores for patient and lab data
 - [RabbitMQ](https://docs.dapr.io/reference/components-reference/supported-pubsub/setup-rabbitmq/) as the pubsub broker for patient admissions and alerting
 - [Elastic](https://docs.dapr.io/operations/monitoring/logging/fluentd/) for searching all event logs generated in the system and collected by [Fluentd](https://www.fluentd.org/)
-- [Docker](https://docs.dapr.io/operations/hosting/self-hosted/self-hosted-with-docker/) containers running on Linux servers orchestrated by [Kubernetes](https://docs.dapr.io/operations/hosting/kubernetes/kubernetes-overview/) and managed via [Rancher](https://rancher.com/why-rancher)
+- [Docker](https://docs.dapr.io/operations/hosting/self-hosted/self-hosted-with-docker/) containers running on Linux servers orchestrated by [Kubernetes](https://docs.dapr.io/operations/hosting/kubernetes/kubernetes-overview/) via [Minikube](https://docs.dapr.io/operations/hosting/kubernetes/cluster/setup-minikube/)
 
 ## Building
 
 ### Installing
 
-Assumes Windows 10+ with WSL 2 enabled. See installation guides for git|dapr|docker|k8s if not already installed.
+Assumes Linux or Windows 10+ with WSL 2 enabled. See installation guides for git|dapr|docker|minikube if not already installed.
 
 ```shell
 > git --version
@@ -57,14 +57,8 @@ Runtime version: 1.6.0
 > docker --version
 Docker version 19.03.12, build 0ed913b8-
 
-> docker run -d --restart=unless-stopped -p 80:80 -p 443:443 --privileged rancher/rancher
-Unable to find image 'rancher/rancher:latest' locally
-latest: Pulling from rancher/rancher...
-
-> kubectl version
-Client Version: ...
-Server Version: ...
-
+> minikube version
+minikube version: v1.8.2
 ```
 
 ### Compiling
