@@ -38,17 +38,17 @@ jobs:
 
       - name: Run dotnet restore
         id: restore
-        run: dotnet restore
+        run: dotnet restore dapr-with-fhir.sln
 
       - name: Run dotnet build
         id: build
-        run: dotnet build --no-restore --configuration Release
+        run: dotnet build dapr-with-fhir.sln --no-restore --configuration Release
 
       - name: Run dotnet format
         id: format
         # TODO: Rename to dotnet format once #1519 fixed
-        run: dotnet-format --no-restore  --verbosity diagnostic --verify-no-changes
+        run: dotnet-format dapr-with-fhir.sln --no-restore --verbosity diagnostic --verify-no-changes
 
       - name: Run dotnet test
         id: test
-        run: dotnet test --no-restore --configuration Release
+        run: dotnet test dapr-with-fhir.sln --no-restore --configuration Release
