@@ -7,3 +7,28 @@ services:
     build:
       context: .
       dockerfile: services/Adt/AdtService.Api/Dockerfile
+
+  alertservice.api:
+    image: ${DOCKER_REGISTRY-}alertserviceapi
+    build:
+      context: .
+      dockerfile: services/Alert/AlertService.Api/Dockerfile
+
+  labservice.api:
+    image: ${DOCKER_REGISTRY-}labserviceapi
+    build:
+      context: .
+      dockerfile: services/Lab/LabService.Api/Dockerfile
+
+
+  webapp:
+    image: ${DOCKER_REGISTRY-}webapp
+    build:
+      context: .
+      dockerfile: apps/WebApp/Dockerfile
+
+  webstatus:
+    image: ${DOCKER_REGISTRY-}webstatus
+    build:
+      context: .
+      dockerfile: apps/WebStatus/Dockerfile

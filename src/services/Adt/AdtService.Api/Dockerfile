@@ -7,6 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
+COPY ["NuGet.config", "."]
 COPY ["services/Adt/AdtService.Api/AdtService.Api.csproj", "services/Adt/AdtService.Api/"]
 RUN dotnet restore "services/Adt/AdtService.Api/AdtService.Api.csproj"
 COPY . .

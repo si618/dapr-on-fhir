@@ -7,6 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
+COPY ["NuGet.config", "."]
 COPY ["apps/WebStatus/WebStatus.csproj", "apps/WebStatus/"]
 RUN dotnet restore "apps/WebStatus/WebStatus.csproj"
 COPY . .

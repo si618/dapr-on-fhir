@@ -7,6 +7,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
+COPY ["NuGet.config", "."]
 COPY ["services/Alert/AlertService.Api/AlertService.Api.csproj", "services/Alert/AlertService.Api/"]
 RUN dotnet restore "services/Alert/AlertService.Api/AlertService.Api.csproj"
 COPY . .

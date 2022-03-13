@@ -15,7 +15,8 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="Nerdbank.GitVersioning" Condition="!Exists('packages.config')">
+    <PackageReference Include="Nerdbank.GitVersioning"
+                      Condition="!Exists('packages.config') AND '$(MSBuildProjectExtension)' == '.csproj'">
       <Version>3.4.255</Version>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
