@@ -1,0 +1,54 @@
+name: Build and test
+
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - '*'
+env:
+  DOTNET_VERSION: '6.0.x'
+
+defaults:
+  run:
+    working-directory: 'src'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          fetch-depth: 0 # avoid shallow clone so nbgv can do its work.
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      # TODO: Remove once fixed: https://github.com/dotnet/format/issues/1519
+      - name: Install dotnet format
+        run: dotnet tool install -g dotnet-format --version "6.*" --add-source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet6/nuget/v3/index.json
+
+      - name: Run NBGV
+        id: version
+        uses: dotnet/nbgv@master
+
+      - name: Run dotnet restore
+        id: restore
+        run: dotnet restore
+
+      - name: Run dotnet build
+        id: build
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Run dotnet format
+        id: format
+        # TODO: Rename to dotnet format once #1519 fixed
+        run: dotnet-format --no-restore  --verbosity diagnostic --verify-no-changes
+
+      - name: Run dotnet test
+        id: test
+        run: dotnet test --no-restore --configuration Release

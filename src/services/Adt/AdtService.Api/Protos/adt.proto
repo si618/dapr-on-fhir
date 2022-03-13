@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option csharp_namespace = "AdtService.Api";
+
+package adt;
+
+service AdtRpcService {
+  rpc AdmitPatient (AdmitPatientRequest) returns (AdmitPatientReply);
+}
+
+message AdmitPatientRequest {
+  string name = 1;
+}
+
+message AdmitPatientReply {
+  string message = 1;
+}

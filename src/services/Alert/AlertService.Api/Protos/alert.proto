@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option csharp_namespace = "AlertService.Api";
+
+package alert;
+
+service AlertRpcService {
+  rpc GetAlerts (GetAlertsRequest) returns (GetAlertsReply);
+  rpc CreateAlert (CreateAlertRequest) returns (CreateAlertReply);
+  rpc DeleteAlert (DeleteAlertRequest) returns (DeleteAlertReply);
+}
+
+message CreateAlertRequest {
+  string name = 1;
+}
+
+message CreateAlertReply {
+  string message = 1;
+}
+
+message DeleteAlertRequest {
+  string name = 1;
+}
+
+message DeleteAlertReply {
+  string message = 1;
+}
+
+message GetAlertsRequest {
+  string name = 1;
+}
+
+message GetAlertsReply {
+  string message = 1;
+}

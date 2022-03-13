@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option csharp_namespace = "LabService.Api";
+
+package lab;
+
+service LabRpcService {
+  rpc SubmitLabOrder (SubmitLabOrderRequest) returns (SubmitLabOrderReply);
+}
+
+message SubmitLabOrderRequest {
+  string name = 1;
+}
+
+message SubmitLabOrderReply {
+  string message = 1;
+}

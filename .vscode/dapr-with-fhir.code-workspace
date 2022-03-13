@@ -16,7 +16,8 @@
       "fluentd",
       "kubectl",
       "kubernetes",
-      "microservices"
+      "microservices",
+      "minikube"
     ]
   }
 }
