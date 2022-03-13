@@ -17,9 +17,9 @@ TODO: Add diagrams showing [architecture](https://docs.microsoft.com/en-us/dotne
 
 ### Microservices
 
-- `AdtService` - Simulated patient administration system for admitting or discharging patients to a hospital
+- `AdtService` - Simulated patient administration system for admitting/discharging patients to/from hospital
 - `LabService` - Simulated laboratory system for requesting and returning pathology results
-- `AlertService` - Service for generating events when adverse pathology results occur
+- `AlertService` - Publishes events when adverse pathology results are returned
 
 ### Applications
 
@@ -31,7 +31,7 @@ TODO: Add diagrams showing [architecture](https://docs.microsoft.com/en-us/dotne
 - [Dapr](https://docs.dapr.io/concepts/overview/) as the distributed application runtime providing cloud abstraction and observability
 - [gRPC](https://docs.dapr.io/operations/configuration/grpc/) for communication between services and applications
 - [Redis](https://docs.dapr.io/reference/components-reference/supported-state-stores/setup-redis/) as the state stores for patient and lab data
-- [RabbitMQ](https://docs.dapr.io/reference/components-reference/supported-pubsub/setup-rabbitmq/) as the pubsub broker for patient admissions and alerting
+- [RabbitMQ](https://docs.dapr.io/reference/components-reference/supported-pubsub/setup-rabbitmq/) as the pubsub broker for patient admissions/discharges, lab requests/results and alerts for adverse events
 - [Elastic](https://docs.dapr.io/operations/monitoring/logging/fluentd/) for searching all event logs generated in the system, collected by [Fluentd](https://www.fluentd.org/)
 - [Docker](https://docs.dapr.io/operations/hosting/self-hosted/self-hosted-with-docker/) containers running on Linux servers orchestrated by [Kubernetes](https://docs.dapr.io/operations/hosting/kubernetes/kubernetes-overview/) via [Minikube](https://docs.dapr.io/operations/hosting/kubernetes/cluster/setup-minikube/)
 
