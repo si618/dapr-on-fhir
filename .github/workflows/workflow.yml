@@ -9,6 +9,7 @@ on:
       - '*'
 env:
   DOTNET_VERSION: '6.0.x'
+  SOLUTION: './Dapr-with-FHIR.sln'
 
 defaults:
   run:
@@ -38,17 +39,17 @@ jobs:
 
       - name: Run dotnet restore
         id: restore
-        run: dotnet restore dapr-with-fhir.sln
+        run: dotnet restore ${{ env.SOLUTION }}
 
       - name: Run dotnet build
         id: build
-        run: dotnet build dapr-with-fhir.sln --no-restore --configuration Release
+        run: dotnet build ${{ env.SOLUTION }} --no-restore --configuration Release
 
       - name: Run dotnet format
         id: format
         # TODO: Rename to dotnet format once #1519 fixed
-        run: dotnet-format dapr-with-fhir.sln --no-restore --verbosity diagnostic --verify-no-changes
+        run: dotnet-format ${{ env.SOLUTION }} --no-restore --verbosity diagnostic --verify-no-changes
 
       - name: Run dotnet test
         id: test
-        run: dotnet test dapr-with-fhir.sln --no-restore --configuration Release
+        run: dotnet test ${{ env.SOLUTION }} --no-restore --configuration Release
