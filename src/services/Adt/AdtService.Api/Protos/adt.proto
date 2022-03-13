@@ -6,6 +6,8 @@ package adt;
 
 service AdtRpcService {
   rpc AdmitPatient (AdmitPatientRequest) returns (AdmitPatientReply);
+  rpc DischargePatient (DischargePatientRequest) returns (DischargePatientReply);
+  //rpc TransferPatient (TransferPatientRequest) returns (TransferPatientReply);
 }
 
 message AdmitPatientRequest {
@@ -13,5 +15,13 @@ message AdmitPatientRequest {
 }
 
 message AdmitPatientReply {
+  string message = 1;
+}
+
+message DischargePatientRequest {
+  string name = 1;
+}
+
+message DischargePatientReply {
   string message = 1;
 }
