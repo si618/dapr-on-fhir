@@ -16,7 +16,7 @@ defaults:
     working-directory: 'src'
 
 jobs:
-  build-and-deploy:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
