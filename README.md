@@ -38,17 +38,22 @@ TODO: Add diagrams showing [architecture](https://docs.microsoft.com/en-us/dotne
 ## Building
 
 ### Installing
-
-Assumes Linux or Windows 10+ with WSL 2 enabled. See installation guides for git|dapr|docker|minikube if not already installed.
+Assumes Linux or Windows 10+ with WSL 2 enabled. See installation guides for dotnet/java/git/dapr/docker/minikube if not already installed.
 
 ```shell
+> dotnet --list-sdks
+6.0.201 ...
+
+> java --version
+java 17.0.2 2022-01-18 LTS
+
 > git --version
-git version 2.30.0.windows.2
+git version 2.35.1.windows.2
 
-> git clone https://github.com/si618/dapr-with-fhir.git
-Cloning into 'dapr-with-fhir'...
+> git clone https://github.com/si618/dapr-on-fhir.git
+Cloning into 'dapr-on-fhir'...
 
-> cd .\dapr-with-fhir\src
+> cd ./dapr-on-fhir/src
 
 > dapr --version
 CLI version: 1.6.0
@@ -68,4 +73,39 @@ TODO: Describe how to compile each service and application (create powershell sc
 
 ## Running
 
-TODO: Describe how to start each service as well as run the benchmark performance tests
+### Spin up Firely FHIR server
+
+Obtain a free [community license](https://docs.fire.ly/projects/Firely-Server/en/latest/deployment/docker.html) for running a local SQLite instance of the Firely server and save the license in `firelyserver` directory.
+
+```shell
+> cd ./firelyserver
+> docker-compose up
+...
+```
+
+TODO: Add Firely server to k8s cluster
+
+### Seed patient data using [Synthea](https://synthetichealth.github.io/synthea/)
+
+Generate realistic (but not real) patient data. Note that seed service expects the `synthea` repository to exist at the directory level as the `dapr-on-fire` repository.  
+
+```shell
+> cd ../../
+> git clone https://github.com/synthetichealth/synthea.git
+> cd ./synthea
+> ./run_synthea -s 618 -p 1000 Alabama, Allgood
+```
+
+### Load patient data into FHIR server
+
+TODO:
+
+### Run tests and benchmarks 
+
+### Spin up microservices
+
+TODO:
+
+### Start web app and dashboard
+
+TODO:

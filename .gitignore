@@ -10,3 +10,4 @@
 # SQLite files
 *.db
 *.db-*
+firelyserver/firelyserver-license.json

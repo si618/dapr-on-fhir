@@ -10,14 +10,6 @@
       "aspnetcorerazor",
       "azure-pipelines",
       "powershell"
-    ],
-    "cSpell.words": [
-      "dapr",
-      "fluentd",
-      "kubectl",
-      "kubernetes",
-      "microservices",
-      "minikube"
     ]
   }
 }
