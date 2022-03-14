@@ -1,4 +1,4 @@
-# Dapr with FHIR 🔥
+# Dapr on FHIR 🔥
 
 An experiment in building microservices using [Dapr](dapr.io) and the [FHIR](https://hl7.org/fhir/) data exchange standard.
 
@@ -31,7 +31,7 @@ TODO: Add diagrams showing [architecture](https://docs.microsoft.com/en-us/dotne
 - [Dapr](https://docs.dapr.io/concepts/overview/) as the distributed application runtime providing cloud abstraction and observability
 - [gRPC](https://docs.dapr.io/operations/configuration/grpc/) for communication between services and applications
 - [Redis](https://docs.dapr.io/reference/components-reference/supported-state-stores/setup-redis/) as the state stores for patient and lab data
-- [RabbitMQ](https://docs.dapr.io/reference/components-reference/supported-pubsub/setup-rabbitmq/) as the pubsub broker for patient admissions/discharges, lab requests/results and alerts for adverse events
+- [RabbitMQ](https://docs.dapr.io/reference/components-reference/supported-pubsub/setup-rabbitmq/) as the pubsub broker for patient admissions/discharges, lab requests/results, and alerts
 - [Elastic](https://docs.dapr.io/operations/monitoring/logging/fluentd/) for searching all event logs generated in the system, collected by [Fluentd](https://www.fluentd.org/)
 - [Docker](https://docs.dapr.io/operations/hosting/self-hosted/self-hosted-with-docker/) containers running on Linux servers orchestrated by [Kubernetes](https://docs.dapr.io/operations/hosting/kubernetes/kubernetes-overview/) via [Minikube](https://docs.dapr.io/operations/hosting/kubernetes/cluster/setup-minikube/)
 

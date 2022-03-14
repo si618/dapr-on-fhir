@@ -9,7 +9,7 @@ on:
       - '*'
 env:
   DOTNET_VERSION: '6.0.x'
-  SOLUTION: './Dapr-with-FHIR.sln'
+  SOLUTION: './Dapr-on-FHIR.sln'
 
 defaults:
   run:
