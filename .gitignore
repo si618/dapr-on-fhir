@@ -11,3 +11,4 @@
 *.db
 *.db-*
 firelyserver/firelyserver-license.json
+tools/firelyserver/firelyserver-license.json

@@ -30,6 +30,8 @@ TODO: Add diagrams showing [architecture](https://docs.microsoft.com/en-us/dotne
 - Microservices are written in C# 10 / .NET 6
 - [Dapr](https://docs.dapr.io/concepts/overview/) as the distributed application runtime providing cloud abstraction and observability
 - [gRPC](https://docs.dapr.io/operations/configuration/grpc/) for communication between services and applications
+- [Firely Server]() as the FHIR server
+- [MongoDB]() as the database storing data in the FHIR server
 - [Redis](https://docs.dapr.io/reference/components-reference/supported-state-stores/setup-redis/) as the state stores for patient and lab data
 - [RabbitMQ](https://docs.dapr.io/reference/components-reference/supported-pubsub/setup-rabbitmq/) as the pubsub broker for patient admissions/discharges, lab requests/results, and alerts
 - [Elastic](https://docs.dapr.io/operations/monitoring/logging/fluentd/) for searching all event logs generated in the system, collected by [Fluentd](https://www.fluentd.org/)
@@ -38,9 +40,18 @@ TODO: Add diagrams showing [architecture](https://docs.microsoft.com/en-us/dotne
 ## Building
 
 ### Installing
-Assumes Linux or Windows 10+ with WSL 2 enabled. See installation guides for dotnet/java/git/dapr/docker/minikube if not already installed.
 
-```shell
+Assumes Linux or Windows 10+ with WSL 2 enabled with the following tools and source code at specified version or higher.
+
+<details>
+  <summary>Install from powershell prompt</summary>
+
+```powershell
+> $PSVersionTable.PSVersion
+Major  Minor  Patch  PreReleaseLabel BuildLabel
+-----  -----  -----  --------------- ----------
+7      2      1
+
 > dotnet --list-sdks
 6.0.201 ...
 
@@ -64,7 +75,13 @@ Docker version 19.03.12, build 0ed913b8-
 
 > minikube version
 minikube version: v1.8.2
+
+> dotnet tool install --global VonkLoader
+You can invoke the tool using the following command: vonkloader
+Tool 'vonkloader' (version '2.1.0') was successfully installed.
 ```
+</details>
+
 
 ### Compiling
 
@@ -73,23 +90,25 @@ TODO: Describe how to compile each service and application (create powershell sc
 
 ## Running
 
-### Spin up Firely FHIR server
+### Acquire Firely FHIR server
 
-Obtain a free [community license](https://docs.fire.ly/projects/Firely-Server/en/latest/deployment/docker.html) for running a local SQLite instance of the Firely server and save the license in `firelyserver` directory.
+Obtain a free [community license](https://docs.fire.ly/projects/Firely-Server/en/latest/deployment/docker.html) for running a local SQLite instance of the Firely server and save it in `src/docker` directory.
 
-```shell
+```powershell
 > cd ./firelyserver
-> docker-compose up
-...
+> docker-compose up -d
+> docker ps
+CONTAINER ID  IMAGE          COMMAND                 CREATED            STATUS         PORTS                   NAMES
+2b9b32caed3f  firely/server  "dotnet Firely.Serve…"  About an hour ago  Up 15 minutes  0.0.0.0:8080->4080/tcp  firelyserver-vonk-web-1
 ```
 
-TODO: Add Firely server to k8s cluster
+TODO: Add Firely server to k8s cluster and dcproj?
 
 ### Seed patient data using [Synthea](https://synthetichealth.github.io/synthea/)
 
-Generate realistic (but not real) patient data. Note that seed service expects the `synthea` repository to exist at the directory level as the `dapr-on-fire` repository.  
+Generate realistic (but not real) patient data. Seed service expects the `synthea` repository to exist at the directory level as the `dapr-on-fire` repository. Feel free to experiment by adding more data (-p) or a different seed (-s).
 
-```shell
+```powershell
 > cd ../../
 > git clone https://github.com/synthetichealth/synthea.git
 > cd ./synthea
@@ -98,7 +117,11 @@ Generate realistic (but not real) patient data. Note that seed service expects t
 
 ### Load patient data into FHIR server
 
-TODO:
+```powershell
+> cd ./output/
+> Compress-Archive -Path ./fhir/ -DestinationPath ./fhir.zip
+> vonkloader -file:./fhir.zip -server:http://localhost:8080
+```
 
 ### Run tests and benchmarks 
 

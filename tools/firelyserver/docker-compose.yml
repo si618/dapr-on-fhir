@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
 
@@ -10,5 +10,7 @@ services:
       - VONK_Repository=SQLite
       - VONK_Administration:Repository=SQLite
       - VONK_License:LicenseFile=./license/firelyserver-license.json
+      - VONK_SizeLimits:MaxBatchSize=10MiB
+      - VONK_SizeLimits:MaxResourceSize=10MiB
     volumes:
       - .:/app/license

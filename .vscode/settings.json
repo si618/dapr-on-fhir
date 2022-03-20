@@ -2,6 +2,7 @@
   "cSpell.words": [
     "allgood",
     "dapr",
+    "dcproj",
     "firely",
     "firelyserver",
     "fluentd",
@@ -9,6 +10,7 @@
     "kubernetes",
     "microservices",
     "minikube",
-    "synthea"
+    "synthea",
+    "vonkloader"
   ]
 }
